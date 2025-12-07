@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TRI•PEAK — Streetwear Shop</title>
+  <style>
+    :root{ --bg:#000; --card:#111; --muted:#ddd; --accent:#fff; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--accent);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    .wrap{max-width:1100px;margin:0 auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .hamburger{width:42px;height:42px;border-radius:8px;display:grid;place-items:center;background:transparent;border:1px solid rgba(255,255,255,0.08);cursor:pointer}
+    .hamburger .bar{width:18px;height:2px;background:var(--accent);position:relative}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand svg{width:48px;height:48px}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted);font-size:13px}
+
+    /* overlay menu */
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);display:none;z-index:80}
+    .overlay.open{display:block}
+    .menu{position:fixed;left:20px;top:20px;z-index:90}
+    .menu a{display:block;color:var(--accent);font-size:22px;padding:12px 0;text-decoration:none}
+
+    main{margin-top:28px}
+    .hero{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
+    .hero img{width:100%;border-radius:12px;display:block}
+
+    .products{margin-top:28px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .card{background:#0b0b0b;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+    .title{font-weight:700;margin-top:8px}
+    .price{color:var(--muted);margin-top:6px}
+    .btn{display:inline-block;margin-top:8px;padding:8px 12px;border-radius:10px;background:var(--accent);color:#000;text-decoration:none;font-weight:700}
+
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* gallery modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.85);z-index:100}
+    .modal.open{display:flex}
+    .modal img{max-width:90vw;max-height:80vh;border-radius:8px}
+
+    @media (max-width:800px){ .hero{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <div class="bar"></div>
+        </button>
+        <div class="brand">
+          <!-- triangle emblem -->
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="none" stroke="#fff" stroke-width="6">
+              <path d="M50 8 L92 86 H8 Z" stroke-linejoin="round"/>
+              <path d="M50 28 L78 78 H22 Z" stroke-linejoin="round" opacity="0.9"/>
+            </g>
+          </svg>
+          <div>
+            <h1>TRI•PEAK</h1>
+            <p class="lead">ARC Beanie • Sticker Sheets • Baggy Snowpants</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <a class="btn" href="#products">Products</a>
+      </div>
+    </header>
+
+    <!-- overlay menu -->
+    <div class="overlay" id="overlay">
+      <nav class="menu" role="navigation">
+        <a href="#home" class="navlink" data-target="home">Home</a>
+        <a href="#products" class="navlink" data-target="products">Products</a>
+        <a href="#support" class="navlink" data-target="support">Support</a>
+      </nav>
+    </div>
+
+    <main id="home">
+      <section class="hero">
+        <div>
+          <!-- big snowpants image -->
+          <img id="snowImg" src="images/IMG_3310.JPG" alt="Baggy Snowpants" />
+        </div>
+        <div>
+          <!-- 4 beanie photo -->
+          <img id="fourBeanies" src="images/IMG_3306.JPG" alt="Four Beanies" />
+        </div>
+      </section>
+
+      <section id="products" class="products">
+        <h2>Products</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="images/IMG_3307.JPG" alt="ARC Beanie 1" data-gallery="beanies"/>
+            <div class="title">ARC Beanie</div>
+            <div class="price">$30</div>
+            <a class="btn" href="#" data-open="gallery" data-index="0">View</a>
+          </div>
+
+          <div class="card">
+            <img src="images/IMG_3308.JPG" alt="ARC Beanie 2" data-gallery="beanies"/>
+            <div class="title">ARC Beanie</div>
+            <div class="price">$30</div>
+            <a class="btn" href="#" data-open="gallery" data-index="1">View</a>
+          </div>
+
+          <div class="card">
+            <img src="images/IMG_3309.JPG" alt="ARC Beanie 3" data-gallery="beanies"/>
+            <div class="title">ARC Beanie</div>
+            <div class="price">$30</div>
+            <a class="btn" href="#" data-open="gallery" data-index="2">View</a>
+          </div>
+
+          <div class="card">
+            <img src="images/IMG_3311.JPG" alt="ARC Beanie 4" data-gallery="beanies"/>
+            <div class="title">ARC Beanie</div>
+            <div class="price">$30</div>
+            <a class="btn" href="#" data-open="gallery" data-index="3">View</a>
+          </div>
+
+          <div class="card">
+            <img src="images/IMG_3310.JPG" alt="Baggy Snowpants"/>
+            <div class="title">Baggy Park Snowpants</div>
+            <div class="price">$65</div>
+            <a class="btn" href="#" data-open="snow">View</a>
+          </div>
+
+          <div class="card">
+            <img src="images/IMG_3312.JPG" alt="Sticker Sheet"/>
+            <div class="title">Custom Sticker Sheet (12×12)</div>
+            <div class="price">$15</div>
+            <a class="btn" href="#" data-open="stickers">Customize</a>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="support" style="margin-top:28px">
+        <h2>Support</h2>
+        <p style="color:var(--muted)">Questions, sizing, or custom orders? Email: rakhshanadrian8@gmail.com</p>
+      </section>
+
+    </main>
+
+    <footer>
+      Free shipping within Canada • Follow on TikTok • rakhshanadrian8@gmail.com
+    </footer>
+
+  </div>
+
+  <!-- Gallery modal -->
+  <div class="modal" id="modal">
+    <div style="text-align:center">
+      <img id="modalImg" src="" alt="" />
+      <div id="modalCaption" style="margin-top:14px;font-size:16px;color:#fff"></div>
+      <div id="modalPrice" style="margin-top:4px;font-size:15px;color:#ccc"></div>
+      <div style="display:flex;gap:20px;justify-content:center;margin-top:14px">
+        <button id="prevBtn" class="btn">Prev</button>
+        <button id="nextBtn" class="btn">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const overlay = document.getElementById('overlay');
+    hamburger.addEventListener('click', ()=>{ overlay.classList.toggle('open'); });
+    overlay.addEventListener('click',(e)=>{ if(e.target===overlay) overlay.classList.remove('open'); });
+    document.querySelectorAll('.navlink').forEach(a=>a.addEventListener('click',()=>overlay.classList.remove('open')));
+
+    // Beanie gallery data
+    const galleryImgs = [
+      {src:'images/IMG_3307.JPG', desc:'A warm beanie perfect for winter.', price:'$30'},
+      {src:'images/IMG_3308.JPG', desc:'A warm beanie perfect for winter.', price:'$30'},
+      {src:'images/IMG_3309.JPG', desc:'A warm beanie perfect for winter.', price:'$30'},
+      {src:'images/IMG_3311.JPG', desc:'A warm beanie perfect for winter.', price:'$30'}
+    ];
+
+    let currentIndex = 0;
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalCaption = document.getElementById('modalCaption');
+    const modalPrice = document.getElementById('modalPrice');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function openGallery(index){
+      currentIndex = index;
+      const item = galleryImgs[currentIndex];
+      modalImg.src = item.src;
+      modalCaption.textContent = item.desc;
+      modalPrice.textContent = item.price;
+      modal.classList.add('open');
+    }
+
+    document.querySelectorAll('[data-open="gallery"]').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const i = parseInt(btn.getAttribute('data-index'))||0;
+        openGallery(i);
+      });
+    });
+
+    prevBtn.addEventListener('click',()=>{
+      currentIndex = (currentIndex - 1 + galleryImgs.length) % galleryImgs.length;
+      openGallery(currentIndex);
+    });
+
+    nextBtn.addEventListener('click',()=>{
+      currentIndex = (currentIndex + 1) % galleryImgs.length;
+      openGallery(currentIndex);
+    });
+
+    modal.addEventListener('click',(e)=>{
+      if(e.target===modal) modal.classList.remove('open');
+    });
+  </script>
+</body>
+</html>
