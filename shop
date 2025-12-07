@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cozy & Cool — Beanies + Custom Stickers</title>
+  <style>
+    :root{
+      --bg:#0f1724;--card:#0b1220;--muted:#9aa8bf;--accent:#7dd3fc;--glass: rgba(255,255,255,0.03);
+      --card-radius:14px;--maxw:980px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#071026);color:#e6f0ff;display:flex;justify-content:center;padding:28px}
+    .site{width:100%;max-width:var(--maxw)}
+    header{display:flex;gap:16px;align-items:center;margin-bottom:22px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:grid;place-items:center;color:#042027;font-weight:700}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted);font-size:14px}
+
+    .hero{background:var(--glass);padding:18px;border-radius:var(--card-radius);display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:18px}
+    .hero-left{max-width:62%}
+    .hero-right{display:flex;gap:10px;align-items:center}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card img{width:100%;height:150px;object-fit:cover;border-radius:8px;margin-bottom:10px}
+    .product-title{font-weight:600;margin:0 0 6px 0}
+    .price{color:var(--accent);font-weight:700}
+    .cta{display:inline-block;margin-top:8px;padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#60a5fa);color:#022;cursor:pointer;text-decoration:none}
+
+    .info{background:transparent;color:var(--muted);font-size:14px;padding:12px;border-radius:10px}
+
+    footer{margin-top:16px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* order form modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(rgba(2,6,23,0.6),rgba(2,6,23,0.6));padding:20px}
+    .modal.open{display:flex}
+    .panel{width:100%;max-width:760px;background:#06111b;padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    label{font-size:13px;color:var(--muted)}
+    input,select,textarea{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;width:100%}
+    textarea{min-height:80px}
+    .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+    .btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#60a5fa);color:#022}
+
+    /* responsive */
+    @media (max-width:680px){
+      .hero{flex-direction:column;align-items:flex-start}
+      .hero-left{max-width:100%}
+      .form-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div class="brand">
+        <div class="logo">CB</div>
+        <div>
+          <h1>Cozy & Cool Shop</h1>
+          <p class="lead">Handmade vibes — beanies & custom sticker sheets. Link from TikTok bio.</p>
+        </div>
+      </div>
+      <div style="margin-left:auto">
+        <a class="cta" href="#order" id="openOrder">Place an order</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-left">
+        <h2 style="margin-top:0">Fresh for the season — made with care</h2>
+        <p class="info">Beanies $30 — Custom 12"×12" matte sticker sheet $10. You order, we print/craft, we ship. Parent/guardian handles payment setup.</p>
+      </div>
+      <div class="hero-right">
+        <div style="text-align:right;color:var(--muted)"><div style="font-weight:700">Fast shipping</div><div>Tracked packages</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid">
+        <!-- Beanie card -->
+        <div class="card">
+          <img src="https://via.placeholder.com/600x400?text=Beanie+Photo" alt="Beanie">
+          <div class="product-title">Chunky Knit Beanie</div>
+          <div class="price">$30</div>
+          <div style="margin-top:8px;color:var(--muted)">Warm, stretchy, and available in multiple colors. One size fits most.</div>
+          <a class="cta" data-item="Beanie" data-price="30" href="#order">Buy now</a>
+        </div>
+
+        <!-- Sticker card -->
+        <div class="card">
+          <img src="https://via.placeholder.com/600x400?text=Sticker+Sheet+Photo" alt="Sticker sheet">
+          <div class="product-title">Custom Sticker Sheet (12" × 12")</div>
+          <div class="price">$10</div>
+          <div style="margin-top:8px;color:var(--muted)">Matte sheet — you choose designs and how many stickers fit on the 12×12 layout.</div>
+          <a class="cta" data-item="StickerSheet" data-price="10" href="#order">Customize</a>
+        </div>
+
+        <!-- Snowpants placeholder (if you still sell) -->
+        <div class="card">
+          <img src="https://via.placeholder.com/600x400?text=Snowpants+Photo" alt="Snowpants">
+          <div class="product-title">Snowpants (optional)</div>
+          <div class="price">Contact for price</div>
+          <div style="margin-top:8px;color:var(--muted)">Durable winter pants — message for sizes and pricing.</div>
+          <a class="cta" data-item="Snowpants" data-price="0" href="#order">Inquire</a>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      <div>Questions? Email: <span id="emailDisplay">youremail@example.com</span> (or DM on TikTok)</div>
+      <div style="margin-top:8px">Put this site URL in your TikTok bio so buyers can tap and order.</div>
+    </footer>
+  </div>
+
+  <!-- Order modal/form -->
+  <div class="modal" id="modal">
+    <div class="panel" role="dialog" aria-modal="true">
+      <h3 style="margin-top:0">Place an order</h3>
+      <form id="orderForm">
+        <div class="form-row">
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" name="name" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required>
+          </div>
+        </div>
+
+        <div style="margin-top:10px">
+          <label for="item">Item</label>
+          <select id="item" name="item">
+            <option value="Beanie">Chunky Knit Beanie — $30</option>
+            <option value="StickerSheet">Custom Sticker Sheet (12x12) — $10</option>
+            <option value="Snowpants">Snowpants — inquire</option>
+          </select>
+        </div>
+
+        <div style="margin-top:10px" class="form-row">
+          <div>
+            <label for="qty">Quantity</label>
+            <input id="qty" name="qty" type="number" min="1" value="1">
+          </div>
+          <div>
+            <label for="price">Price (USD)</label>
+            <input id="price" name="price" type="text" readonly>
+          </div>
+        </div>
+
+        <div style="margin-top:10px">
+          <label for="custom">Sticker details / customization (for sticker sheets)</label>
+          <textarea id="custom" name="custom" placeholder="Describe designs, colors, number of stickers, etc."></textarea>
+        </div>
+
+        <div style="margin-top:10px">
+          <label for="address">Shipping address</label>
+          <textarea id="address" name="address" placeholder="Street, city, postal code, country" required></textarea>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn ghost" id="close">Cancel</button>
+          <!-- Payment: parent/guardian should replace # with a real checkout URL (PayPal/Shopify/etc.) -->
+          <a class="btn primary" id="checkout" href="#">Pay / Checkout (parent adds link)</a>
+          <button type="submit" class="btn primary" style="display:none" id="submitOrder">Submit order</button>
+        </div>
+
+        <p style="color:var(--muted);font-size:13px;margin-top:10px">Note: As the seller you're underage — have a parent/guardian set up the checkout link. You can still collect orders here; you'll be notified and can invoice later.</p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Basic interactivity: open modal, populate price, store orders to localStorage, and prepare a mailto fallback
+    const modal = document.getElementById('modal');
+    const openBtns = document.querySelectorAll('.cta');
+    const close = document.getElementById('close');
+    const itemSelect = document.getElementById('item');
+    const priceField = document.getElementById('price');
+    const qty = document.getElementById('qty');
+    const orderForm = document.getElementById('orderForm');
+    const checkout = document.getElementById('checkout');
+
+    function priceFor(item){
+      if(item==='Beanie') return 30;
+      if(item==='StickerSheet') return 10;
+      return 0;
+    }
+
+    function openModal(preselect){
+      modal.classList.add('open');
+      if(preselect) itemSelect.value = preselect;
+      updatePrice();
+    }
+
+    openBtns.forEach(b=>b.addEventListener('click',e=>{e.preventDefault();const it=b.dataset?.item;openModal(it);}));
+    document.getElementById('openOrder').addEventListener('click',()=>openModal('Beanie'));
+    close.addEventListener('click',()=>modal.classList.remove('open'));
+    itemSelect.addEventListener('change',updatePrice);
+    qty.addEventListener('input',updatePrice);
+
+    function updatePrice(){
+      const p = priceFor(itemSelect.value);
+      const q = Math.max(1,parseInt(qty.value)||1);
+      priceField.value = '$' + (p * q).toFixed(2);
+      // set checkout link to placeholder; parent should replace
+      checkout.href = '#REPLACE_WITH_PARENT_PAYMENT_LINK';
+    }
+
+    orderForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const data = {
+        name: orderForm.name.value,
+        email: orderForm.email.value,
+        item: orderForm.item.value,
+        qty: orderForm.qty.value,
+        price: orderForm.price.value,
+        custom: orderForm.custom.value,
+        address: orderForm.address.value,
+        createdAt: new Date().toISOString()
+      };
+      // save to localStorage (so you can see orders on your device) and show confirmation
+      const orders = JSON.parse(localStorage.getItem('shop_orders')||'[]');
+      orders.push(data);
+      localStorage.setItem('shop_orders', JSON.stringify(orders));
+      alert('Order saved locally. Share the checkout link with the buyer or invoice them.');
+      modal.classList.remove('open');
+      orderForm.reset();
+    });
+
+    // small enhancement: clicking the checkout link will open parent payment link in new tab (if replaced)
+    checkout.addEventListener('click', function(e){
+      if(checkout.href.includes('#REPLACE_WITH_PARENT_PAYMENT_LINK')){
+        e.preventDefault();
+        alert('Parent/guardian: replace the checkout link in the site HTML with your PayPal/Shopify checkout URL so buyers can pay directly.');
+      }
+    });
+
+    // pre-fill price on load
+    updatePrice();
+  </script>
+</body>
+</html>
